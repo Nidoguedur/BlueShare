@@ -4,6 +4,7 @@ using System.Text;
 using SQLite;
 using System.Linq;
 using Xamarin.Forms;
+using BlueShare.Interface;
 
 namespace BlueShare.DAO
 {
@@ -13,7 +14,7 @@ namespace BlueShare.DAO
 
         public DataBase()
         {
-            //Connection = new SQLiteConnection(DependencyService.Get<ICaminho>().ObterCaminho("database.sqlite"));            
+            Connection = new SQLiteConnection(DependencyService.Get<IDataPath>().GetPath("database.sqlite"));            
         }                
         
         public virtual void Dispose()
