@@ -1,13 +1,19 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-            xmlns:local="clr-namespace:BlueShare" 
-            xmlns:tab="clr-namespace:BlueShare.ContentPages"
-            x:Class="TabbedPageWithNavigationPage.MainPage">
-    <NavigationPage Title="Schedule" Icon="schedule.png">
-        <x:Arguments>
-            <tab:Galery />
-            <tab:Groups />
-        </x:Arguments>
-    </NavigationPage>
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tab="clr-namespace:BlueShare.Views;assembly=BlueShare"
+             x:Class="BlueShare.MainPage">
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Order="Primary" />
+        <ToolbarItem Text="Configurações" Order="Secondary"/>
+        <ToolbarItem Text="Pesquisar" Order="Secondary" />
+        <ToolbarItem Text="Sobre" Order="Secondary" />
+    </TabbedPage.ToolbarItems>
+
+    <TabbedPage.Children>
+        <tab:Galery />
+        <tab:Groups />
+    </TabbedPage.Children>
+
 </TabbedPage>

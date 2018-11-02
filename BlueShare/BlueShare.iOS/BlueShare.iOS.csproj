@@ -150,11 +150,11 @@
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\BlueShare\BlueShare.csproj">
-      <Project>{D88643D0-4D80-48F0-97E4-4D8EC186CF88}</Project>
+      <Project>{7acea397-c2a9-488f-b1dd-88b16b948cb0}</Project>
       <Name>BlueShare</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

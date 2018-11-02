@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace BlueShare
+namespace BlueShare.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MainPage : TabbedPage
+	public partial class Groups : ContentPage
 	{
-		public MainPage ()
+		public Groups ()
 		{
 			InitializeComponent ();
 		}

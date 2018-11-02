@@ -11,7 +11,7 @@ namespace BlueShare
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            App.Current.MainPage = new MainPage();
         }
 
         protected override void OnStart()
