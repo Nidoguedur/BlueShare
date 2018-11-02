@@ -2,18 +2,31 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:tab="clr-namespace:BlueShare.Views;assembly=BlueShare"
-             x:Class="BlueShare.MainPage">
+             x:Class="BlueShare.MainPage"
+             Title="BlueShare">
+    <NavigationPage Title="Geleria">
+        <NavigationPage.ToolbarItems>
+            <ToolbarItem Order="Primary" />
+            <ToolbarItem Text="Configurações" Order="Secondary"/>
+            <ToolbarItem Text="Pesquisar" Order="Secondary" />
+            <ToolbarItem Text="Sobre" Order="Secondary" />
+        </NavigationPage.ToolbarItems>
+        <x:Arguments>
+            <tab:Galery Title="BlueShare"/>
+        </x:Arguments>
+    </NavigationPage>
 
-    <TabbedPage.ToolbarItems>
-        <ToolbarItem Order="Primary" />
-        <ToolbarItem Text="Configurações" Order="Secondary"/>
-        <ToolbarItem Text="Pesquisar" Order="Secondary" />
-        <ToolbarItem Text="Sobre" Order="Secondary" />
-    </TabbedPage.ToolbarItems>
+    <NavigationPage Title="Grupos">
+        <NavigationPage.ToolbarItems>
+            <ToolbarItem Order="Primary" />
+            <ToolbarItem Text="Configurações" Order="Secondary"/>
+            <ToolbarItem Text="Pesquisar" Order="Secondary" />
+            <ToolbarItem Text="Sobre" Order="Secondary" />
+        </NavigationPage.ToolbarItems>
 
-    <TabbedPage.Children>
-        <tab:Galery />
-        <tab:Groups />
-    </TabbedPage.Children>
+        <x:Arguments>
+            <tab:Groups Title="BlueShare"/>
+        </x:Arguments>
+    </NavigationPage>
 
 </TabbedPage>
