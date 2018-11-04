@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Android.Content;
+using BlueShare.Miscellaneous;
+using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,6 +10,9 @@ namespace BlueShare
 {
     public partial class App : Application
     {
+        public static int ScreenWidth { get; set; }
+        public static int ScreenHeight { get; set; }
+
         public App()
         {
             InitializeComponent();
@@ -16,7 +22,7 @@ namespace BlueShare
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            
         }
 
         protected override void OnSleep()

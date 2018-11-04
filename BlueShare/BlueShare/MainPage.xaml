@@ -4,15 +4,17 @@
              xmlns:tab="clr-namespace:BlueShare.Views;assembly=BlueShare"
              x:Class="BlueShare.MainPage"
              Title="BlueShare">
-    <NavigationPage Title="Geleria">
+    
+    <NavigationPage Title="Galeria">
         <NavigationPage.ToolbarItems>
             <ToolbarItem Order="Primary" />
             <ToolbarItem Text="Configurações" Order="Secondary"/>
             <ToolbarItem Text="Pesquisar" Order="Secondary" />
             <ToolbarItem Text="Sobre" Order="Secondary" />
         </NavigationPage.ToolbarItems>
+        
         <x:Arguments>
-            <tab:Galery Title="BlueShare"/>
+            <tab:Gallery Title="BlueShare"/>
         </x:Arguments>
     </NavigationPage>
 
