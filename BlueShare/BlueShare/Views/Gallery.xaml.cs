@@ -44,6 +44,7 @@ namespace BlueShare.Views
                 {
                     var photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
                     {
+                        PhotoSize = PhotoSize.Small,
                         DefaultCamera = CameraDevice.Rear
                     });
 
@@ -52,6 +53,7 @@ namespace BlueShare.Views
                         using (FileStream output = new FileStream($@"{Picture.PicturesPath}/{Picture.NextName}", FileMode.Create))
                         {
                             photo.GetStream().CopyTo(output);
+                            GridImages.UpdateImages();
                         }
                     }
                 }

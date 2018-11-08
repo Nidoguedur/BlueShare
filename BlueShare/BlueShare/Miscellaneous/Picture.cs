@@ -26,7 +26,7 @@ namespace BlueShare.Miscellaneous
         {
             string prefix = "BlueShare";
 
-            return $"{prefix}_{DateTime.Now.Ticks}";
+            return $"{prefix}_{DateTime.Now.Ticks}.jpg";
         }
     }
 }

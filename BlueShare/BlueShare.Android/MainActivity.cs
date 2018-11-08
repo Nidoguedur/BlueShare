@@ -51,8 +51,7 @@ namespace BlueShare.Droid
                 return;
             }
 
-            var enableBtIntent = new Intent(BluetoothAdapter.ActionRequestEnable);
-            StartActivityForResult(enableBtIntent, 2);
+            StartActivityForResult(new Intent(BluetoothAdapter.ActionRequestEnable), 2);
         }
 
         //private void Watcher_Created(object sender, FileSystemEventArgs e)

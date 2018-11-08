@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <RelativeLayout>
             <ScrollView Orientation="Vertical">
-                <views:GridImage />
+                <views:GridImage x:Name="GridImages"/>
             </ScrollView>
 
             <controls:FloatingActionButton x:Name="CameraButton" 

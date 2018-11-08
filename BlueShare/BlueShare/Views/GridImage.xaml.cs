@@ -19,6 +19,14 @@ namespace BlueShare.Views
         public GridImage()
         {
             InitializeComponent();
+
+            CreateGrid();
+        }
+
+        public void UpdateImages()
+        {
+            RowDefinitions.Clear();
+
             CreateGrid();
         }
 
