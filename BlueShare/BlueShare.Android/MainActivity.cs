@@ -10,6 +10,8 @@ using Plugin.CurrentActivity;
 using Android.Content;
 using Android.Bluetooth;
 using BlueShare.Miscellaneous;
+using Android.Support.V4.Content;
+using Android;
 
 namespace BlueShare.Droid
 {
@@ -52,12 +54,12 @@ namespace BlueShare.Droid
             }
 
             StartActivityForResult(new Intent(BluetoothAdapter.ActionRequestEnable), 2);
-        }
 
-        //private void Watcher_Created(object sender, FileSystemEventArgs e)
-        //{
-        //    System.Diagnostics.Debug.WriteLine("ATUALIZOU A PASTA");
-        //}
+            if (ContextCompat.CheckSelfPermission(this, Manifest.Permission.ReadExternalStorage) == Permission.Denied)
+            {
+                Toast.MakeText(this, "Armazenamento externo não disponível", ToastLength.Long).Show();
+            }
+        }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {

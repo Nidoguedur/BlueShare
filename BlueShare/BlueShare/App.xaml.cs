@@ -17,7 +17,12 @@ namespace BlueShare
         {
             InitializeComponent();
 
-            App.Current.MainPage = new MainPage();
+            var nav = new NavigationPage(new MainPage() { Title = "BlueShare" });
+            nav.ToolbarItems.Add(new ToolbarItem { Order = ToolbarItemOrder.Primary });
+            nav.ToolbarItems.Add(new ToolbarItem { Text = "Configurações", Order = ToolbarItemOrder.Secondary });
+            nav.ToolbarItems.Add(new ToolbarItem { Text = "Sobre", Order = ToolbarItemOrder.Secondary });
+
+            App.Current.MainPage = nav;
         }
 
         protected override void OnStart()
