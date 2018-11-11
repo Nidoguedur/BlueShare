@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using Android.Bluetooth;
 
-
-
 namespace BlueShare.Miscellaneous
 {
     public class DroidBluetooth

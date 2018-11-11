@@ -1,5 +1,4 @@
 ﻿using Android.Content;
-using BlueShare.Miscellaneous;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -17,9 +16,11 @@ namespace BlueShare
         {
             InitializeComponent();
 
-            var nav = new NavigationPage(new MainPage() { Title = "BlueShare" });
-            nav.ToolbarItems.Add(new ToolbarItem { Order = ToolbarItemOrder.Primary });
-            nav.ToolbarItems.Add(new ToolbarItem { Text = "Configurações", Order = ToolbarItemOrder.Secondary });
+            var vMainPage = new MainPage() { Title = "BlueShare" };
+
+            var nav = new NavigationPage(vMainPage);
+            nav.ToolbarItems.Add(new ToolbarItem { Order = ToolbarItemOrder.Primary } );
+            nav.ToolbarItems.Add(new ToolbarItem { Text = "Configurações", Order = ToolbarItemOrder.Secondary, Command = new Command(vMainPage.ConfigurationToolBarItemClickedAsync) });
             nav.ToolbarItems.Add(new ToolbarItem { Text = "Sobre", Order = ToolbarItemOrder.Secondary });
 
             App.Current.MainPage = nav;

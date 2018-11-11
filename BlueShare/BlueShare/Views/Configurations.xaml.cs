@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BlueShare.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,36 @@ namespace BlueShare.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Configurations : ContentPage
 	{
-		public Configurations ()
+		public Configurations()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
-	}
+
+        public void OnViewCellTappedIsActiveBluetooth(object sender, EventArgs args)
+        {
+           var cell = (ViewCell)sender;
+
+           var switchCell = (Switch)cell.View.FindByName("SwitchIsActiveBluetooth");
+
+           switchCell.IsToggled = !switchCell.IsToggled;
+        }
+
+        public void OnViewCellTappedIsShare(object sender, EventArgs args)
+        {
+            var cell = (ViewCell)sender;
+
+            var switchCell = (Switch)cell.View.FindByName("SwitchIsShare");
+
+            switchCell.IsToggled = !switchCell.IsToggled;
+        }
+
+        public void OnViewCellTappedIsGroupRemember(object sender, EventArgs args)
+        {
+            var cell = (ViewCell)sender;
+
+            var switchCell = (Switch)cell.View.FindByName("SwitchIsGroupRemember");
+
+            switchCell.IsToggled = !switchCell.IsToggled;
+        }
+    }
 }
