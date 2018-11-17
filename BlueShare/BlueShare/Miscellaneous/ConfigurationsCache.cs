@@ -6,11 +6,11 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace BlueShare.Miscellaneous
 {
-    public class ConfigurationsCache
+    public static class ConfigurationsCache
     {
         private static readonly IMemoryCache Cache = new MemoryCache(new MemoryCacheOptions());
-        
-        public bool IsActiveBluetooth
+
+        public static bool IsActiveBluetooth
         {
             get
             {
@@ -27,7 +27,7 @@ namespace BlueShare.Miscellaneous
             set => Cache.Set("IsActiveBluetooth", value, new DateTimeOffset());
         }
 
-        public bool IsShare
+        public static bool IsShare
         {
             get
             {
@@ -44,7 +44,7 @@ namespace BlueShare.Miscellaneous
             set => Cache.Set("IsShare", value, new DateTimeOffset());
         }
 
-        public bool IsGroupRemember
+        public static bool IsGroupRemember
         {
             get
             {
@@ -59,11 +59,6 @@ namespace BlueShare.Miscellaneous
             }
 
             set => Cache.Set("IsGroupRemember", value, new DateTimeOffset());
-        }
-
-        public ConfigurationsCache()
-        {
-
         }
     }
 }
