@@ -10,7 +10,8 @@ namespace BlueShare.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
+        [Unique]
         public string Name { get; set; }
-        public string DeviceId { get; set; }
+        public List<UserModel> Users;
     }
 }

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mult="clr-namespace:Xamarin.Forms.MultiSelectListView;assembly=Xamarin.Forms.MultiSelectListView"
+             x:Class="BlueShare.Views.GroupAdd">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="SaveGroup" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Nome do grupo"/>
+            <ListView x:Name="ListViewUsers" 
+                      Header="Usuários" 
+                      ItemsSource="{Binding Users}"
+                      IsPullToRefreshEnabled="True"
+                      mult:MultiSelect.Enable="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <mult:SelectableCell x:Name="MultSelectUser">
+                            <mult:SelectableCell.CheckView>
+                                <Image Source="selected.png" WidthRequest="30" HeightRequest="30"/>
+                            </mult:SelectableCell.CheckView>
+                            
+                            <mult:SelectableCell.DataView>
+                                <StackLayout Orientation="Vertical" Padding="20,0,20,0">
+                                    <Label Text="{Binding DeviceName}"/>
+                                </StackLayout>
+                            </mult:SelectableCell.DataView>
+                        </mult:SelectableCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

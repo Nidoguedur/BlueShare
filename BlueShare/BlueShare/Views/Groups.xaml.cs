@@ -24,6 +24,13 @@ namespace BlueShare.Views
             var groups = new GroupDAO();
 
             ListViewGroups.ItemsSource = groups.Search();
+
+            AddGroupButton.Clicked += AddGroupButton_Clicked;
         }
-	}
+
+        public void AddGroupButton_Clicked(object sender, EventArgs e)
+        {
+            this.Navigation.PushModalAsync(new GroupAdd() { Title = "Novo grupo" });
+        }
+    }
 }

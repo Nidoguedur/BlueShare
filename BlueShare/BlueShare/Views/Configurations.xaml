@@ -1,15 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:config="clr-namespace:BlueShare.Miscellaneous"
              x:Class="BlueShare.Views.Configurations"
              Title="Configurações">
     <ContentPage.Content>
-        <StackLayout>            
             <TableView Intent="Settings" HasUnevenRows="True">
-                <TableView.BindingContext>
-                    <config:ConfigurationsCache />
-                </TableView.BindingContext>
                 <TableRoot>
                     <TableSection Title="Geral">
                         <ViewCell Height="100" Tapped="OnViewCellTappedIsActiveBluetooth">
@@ -24,7 +19,6 @@
                                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.9}"/>
 
                                 <Switch x:Name="SwitchIsActiveBluetooth"
-                                        IsToggled="{Binding ConfigurationsCache.IsActiveBluetooth}"
                                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
                                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=LblBluetooth, Property=Width}"/>
                             </RelativeLayout>
@@ -43,7 +37,6 @@
                                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.9}"/>
 
                                 <Switch x:Name="SwitchIsShare"
-                                        IsToggled="{Binding ConfigurationsCache.IsShare}"
                                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
                                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=LblShareDesc, Property=Width}"/>
                             </RelativeLayout>
@@ -63,7 +56,6 @@
                                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.9}"/>
 
                                 <Switch x:Name="SwitchIsGroupRemember"
-                                        IsToggled="{Binding ConfigurationsCache.IsGroupRemember}"
                                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
                                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=LblRemember, Property=Width}"/>
                             </RelativeLayout>
@@ -71,6 +63,5 @@
                     </TableSection>
                 </TableRoot>
             </TableView>
-        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
