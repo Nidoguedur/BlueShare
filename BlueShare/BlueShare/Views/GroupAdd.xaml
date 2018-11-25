@@ -2,16 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:mult="clr-namespace:Xamarin.Forms.MultiSelectListView;assembly=Xamarin.Forms.MultiSelectListView"
-             x:Class="BlueShare.Views.GroupAdd">
+             x:Class="BlueShare.Views.GroupAdd"
+             Title="Novo grupo">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Clicked="SaveGroup" />
+        <ToolbarItem Icon="AddGroup.png" Command="{Binding SaveGroupCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Entry Placeholder="Nome do grupo"/>
+            <Entry Placeholder="Nome do grupo" Text="{Binding GroupName, Mode=TwoWay}"/>
+            
             <ListView x:Name="ListViewUsers" 
-                      Header="Usuários" 
                       ItemsSource="{Binding Users}"
+                      Header="Usuários"
                       IsPullToRefreshEnabled="True"
                       mult:MultiSelect.Enable="True">
                 <ListView.ItemTemplate>

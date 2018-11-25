@@ -17,17 +17,9 @@ namespace BlueShare.Views
 	{
 		public GroupAdd ()  
 		{
-			InitializeComponent();
+            InitializeComponent();
 
             this.BindingContext = new GroupAddViewModel();
-
-            //ListViewUsers.ItemsSource = .Users;
-        }
-
-        public void SaveGroup(object sender, EventArgs args)
-        {
-            var groupDao = new GroupDAO();
-            groupDao.Insert(new GroupModel { });
         }
     }
 }

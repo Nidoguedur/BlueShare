@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Android.Database.Sqlite;
+using Android.Util;
 using BlueShare.Models;
 
 namespace BlueShare.DAO
@@ -9,37 +11,89 @@ namespace BlueShare.DAO
     {
         public GroupDAO() : base()
         {
-            Connection.CreateTable<GroupModel>();
+            try
+            {
+                Connection.CreateTable<GroupModel>();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Info("SQLiteEx", ex.Message);
+            }
         }
 
         public List<GroupModel> Search()
         {
-            return Connection.Table<GroupModel>().ToList();
+            try
+            {
+                return Connection.Table<GroupModel>().ToList();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Info("SQLiteEx", ex.Message);
+                return null;
+            }
         }
 
         public List<GroupModel> Select(string name)
         {
-            return Connection.Table<GroupModel>().Where(a => a.Name.Contains(name)).ToList();
+            try
+            {
+                return Connection.Table<GroupModel>().Where(a => a.Name.Contains(name)).ToList();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Info("SQLiteEx", ex.Message);
+                return null;
+            }
         }
 
-        public GroupModel GetUserById(int id)
+        public GroupModel GetGroupById(int id)
         {
-            return Connection.Table<GroupModel>().Where(a => a.Id == id).FirstOrDefault();
+            try
+            {
+                return Connection.Table<GroupModel>().Where(a => a.Id == id).FirstOrDefault();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Info("SQLiteEx", ex.Message);
+                return null;
+            }
         }
 
-        public void Insert(GroupModel user)
+        public void Insert(GroupModel group)
         {
-            Connection.Insert(user);
+            try
+            {
+                Connection.Insert(group);
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Info("SQLiteEx", ex.Message);
+            }
         }
 
-        public void Update(GroupModel user)
+        public void Update(GroupModel group)
         {
-            Connection.Update(user);
+            try
+            {
+                Connection.Update(group);
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Info("SQLiteEx", ex.Message);
+            }
         }
 
-        public void Exclusao(GroupModel user)
+        public void Delete(GroupModel group)
         {
-            Connection.Delete(user);
+            try
+            {
+                Connection.Delete(group);
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Info("SQLiteEx", ex.Message);
+            }
         }
     }
 }
