@@ -84,7 +84,7 @@ namespace BlueShare.DAO
             }
         }
 
-        public void Exclusao(UserModel user)
+        public void Delete(UserModel user)
         {
             try
             {

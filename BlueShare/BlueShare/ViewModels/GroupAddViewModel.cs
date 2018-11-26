@@ -1,13 +1,9 @@
 ﻿using BlueShare.DAO;
 using BlueShare.Models;
-using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.MultiSelectListView;
+using Android;
 
 namespace BlueShare.ViewModels
 {
@@ -26,7 +22,7 @@ namespace BlueShare.ViewModels
         {
             this.GroupName = string.Empty;
             this.Groups = new GroupDAO();
-            this.SaveGroupCommand = new Command(SaveGroup);
+            this.SaveGroupCommand = new Command(SaveGroupAsync);
 
             this.Users = new MultiSelectObservableCollection<UserModel>
             {
@@ -39,17 +35,30 @@ namespace BlueShare.ViewModels
             };
         }
 
-        private void SaveGroup()
+        private async void SaveGroupAsync()
         {
-            var userList = new List<UserModel>();
-            foreach(UserModel user in this.Users.SelectedItems)
+            if (ValidateNewGroup())
             {
-                userList.Add(user);
+                var userList = new List<UserModel>();
+                foreach (UserModel user in this.Users.SelectedItems)
+                {
+                    userList.Add(user);
+                }
+
+                this.Groups.Insert(new GroupModel { Name = this.GroupName, Users = userList });
+
+                await App.Current.MainPage.Navigation.PopAsync();
             }
+            else
+            {
+               // await App.Current.MainPage.DisplayAlert("Aviso", "Grupo não definido", "Ok");
+            }
+        }
 
-            this.Groups.Insert(new GroupModel { Name = this.GroupName, Users = userList });
-
-            App.Current.MainPage.Navigation.PopAsync();
+        private bool ValidateNewGroup()
+        {
+            return this.Users.Count > 0
+                && !this._GroupName.Equals(string.Empty);
         }
     }
 }

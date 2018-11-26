@@ -13,7 +13,7 @@
             
             <ListView x:Name="ListViewUsers" 
                       ItemsSource="{Binding Users}"
-                      Header="Usuários"
+                      Header="Usuários recentes"
                       IsPullToRefreshEnabled="True"
                       mult:MultiSelect.Enable="True">
                 <ListView.ItemTemplate>

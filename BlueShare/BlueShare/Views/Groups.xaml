@@ -5,7 +5,7 @@
              x:Class="BlueShare.Views.Groups">
     <ContentPage.Content>
         <StackLayout>
-            <ListView ItemTapped="{Binding ShowListUsers}"
+            <ListView Header="Grupos" 
                       ItemsSource="{Binding ListGroups}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -15,11 +15,12 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button Command="{Binding AddGroupCommand}"
-                HeightRequest="15"
+            <StackLayout>
+                <Button Command="{Binding AddGroupCommand}"
                 HorizontalOptions="Center"
                 Image="AddGroup.png">
-            </Button>
+                </Button>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

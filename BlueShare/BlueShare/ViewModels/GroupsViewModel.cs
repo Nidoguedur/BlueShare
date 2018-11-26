@@ -24,10 +24,5 @@ namespace BlueShare.ViewModels
         {
             App.Current.MainPage.Navigation.PushAsync(new GroupAdd());
         }
-
-        public void ShowListUsers(object sender, ItemTappedEventArgs e)
-        {
-
-        }
     }
 }

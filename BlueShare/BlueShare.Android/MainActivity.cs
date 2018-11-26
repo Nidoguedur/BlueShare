@@ -29,14 +29,6 @@ namespace BlueShare.Droid
 
             App.ScreenWidth = (int)(Resources.DisplayMetrics.WidthPixels / Resources.DisplayMetrics.Density);
             App.ScreenHeight = (int)(Resources.DisplayMetrics.HeightPixels / Resources.DisplayMetrics.Density);
-
-            //CrossCurrentActivity.Current.Init(this, savedInstanceState);
-
-            //FileSystemWatcher watcher = new FileSystemWatcher
-            //{
-            //    Path = App.PicturesPath
-            //};
-            //watcher.Created += Watcher_Created;
         }
 
         protected override void OnStart()
