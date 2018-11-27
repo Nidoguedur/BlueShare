@@ -11,7 +11,7 @@ namespace BlueShare.Views
         {
             InitializeComponent();
 
-            this.BindingContext = new GroupAddViewModel();
+            this.BindingContext = new GroupAddViewModel(this);
         }
     }
 }

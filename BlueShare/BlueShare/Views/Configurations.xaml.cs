@@ -19,17 +19,17 @@ namespace BlueShare.Views
 
         public void OnViewCellTappedIsActiveBluetooth(object sender, EventArgs args)
         {
-            SwitchIsActiveBluetooth.IsToggled = !SwitchIsActiveBluetooth.IsToggled;
+            //SwitchIsActiveBluetooth.IsToggled = !SwitchIsActiveBluetooth.IsToggled;
         }
 
         public void OnViewCellTappedIsShare(object sender, EventArgs args)
         {
-            SwitchIsShare.IsToggled = !SwitchIsShare.IsToggled;
+            //SwitchIsShare.IsToggled = !SwitchIsShare.IsToggled;
         }
 
         public void OnViewCellTappedIsGroupRemember(object sender, EventArgs args)
         {
-            SwitchIsGroupRemember.IsToggled = !SwitchIsGroupRemember.IsToggled;
+            //SwitchIsGroupRemember.IsToggled = !SwitchIsGroupRemember.IsToggled;
         }
     }
 }

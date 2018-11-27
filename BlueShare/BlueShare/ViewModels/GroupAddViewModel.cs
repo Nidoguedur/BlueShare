@@ -4,12 +4,17 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.MultiSelectListView;
 using Android;
+using BlueShare.Miscellaneous;
+using Android.Bluetooth;
 
 namespace BlueShare.ViewModels
 {
     public class GroupAddViewModel : BaseViewModel
     {
-        private GroupDAO Groups;
+        private GroupDAO _GroupsDAO = new GroupDAO();
+        private UserDAO _UsersDAO = new UserDAO();
+
+        private Page PageOwner { get; set; }
 
         private string _GroupName { get; set; }
         public string GroupName { get { return _GroupName; } set { _GroupName = value; OnPropertyChanged("GroupName"); } }
@@ -18,21 +23,29 @@ namespace BlueShare.ViewModels
 
         public Command SaveGroupCommand { get;  set; }
 
-        public GroupAddViewModel() : base()
+        public GroupAddViewModel(Page pageOwner) : base()
         {
             this.GroupName = string.Empty;
-            this.Groups = new GroupDAO();
             this.SaveGroupCommand = new Command(SaveGroupAsync);
+            this.PageOwner = pageOwner;
 
-            this.Users = new MultiSelectObservableCollection<UserModel>
+            this.Users = new MultiSelectObservableCollection<UserModel>();
+
+            foreach (BluetoothDevice device in DroidBluetooth.Adapter.BondedDevices)
             {
-                //this.Groups.Search()
-                new UserModel { DeviceId = "1", DeviceName = "Douglas" },
-                new UserModel { DeviceId = "2", DeviceName = "Jefferson" },
-                new UserModel { DeviceId = "3", DeviceName = "Fernanda" },
-                new UserModel { DeviceId = "4", DeviceName = "Mauro" },
-                new UserModel { DeviceId = "5", DeviceName = "Peter" }
-            };
+                if (this._UsersDAO.GetUserById(device.Address) == null)
+                {
+                    this.Users.Add(new UserModel { DeviceId = device.Address, DeviceName = device.Name });
+                }
+            }
+
+            //{
+            //new UserModel { DeviceId = "1", DeviceName = "Douglas" },
+            //new UserModel { DeviceId = "2", DeviceName = "Jefferson" },
+            //new UserModel { DeviceId = "3", DeviceName = "Fernanda" },
+            //new UserModel { DeviceId = "4", DeviceName = "Mauro" },
+            //new UserModel { DeviceId = "5", DeviceName = "Peter" }
+            //};
         }
 
         private async void SaveGroupAsync()
@@ -45,19 +58,19 @@ namespace BlueShare.ViewModels
                     userList.Add(user);
                 }
 
-                this.Groups.Insert(new GroupModel { Name = this.GroupName, Users = userList });
+                this._GroupsDAO.Insert(new GroupModel { Name = this.GroupName, Users = userList });
 
                 await App.Current.MainPage.Navigation.PopAsync();
             }
             else
             {
-               // await App.Current.MainPage.DisplayAlert("Aviso", "Grupo não definido", "Ok");
+                await PageOwner.DisplayAlert("Aviso", "Grupo não definido corretamente", "Ok");
             }
         }
 
         private bool ValidateNewGroup()
         {
-            return this.Users.Count > 0
+            return this.Users.SelectedItems != null 
                 && !this._GroupName.Equals(string.Empty);
         }
     }

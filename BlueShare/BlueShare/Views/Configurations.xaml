@@ -18,7 +18,7 @@
                                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=LblBluetooth, Property=Y, Constant=15}"
                                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.9}"/>
 
-                                <Switch x:Name="SwitchIsActiveBluetooth"
+                                <Switch IsToggled="{Binding IsActiveBluetooth}"
                                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
                                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=LblBluetooth, Property=Width}"/>
                             </RelativeLayout>
@@ -36,7 +36,7 @@
                                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=LblShare, Property=Y, Constant=15}"
                                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.9}"/>
 
-                                <Switch x:Name="SwitchIsShare"
+                                <Switch IsToggled="{Binding IsShare}"
                                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
                                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=LblShareDesc, Property=Width}"/>
                             </RelativeLayout>
@@ -55,7 +55,7 @@
                                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=LblRemember, Property=Y, Constant=15}"
                                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width, Factor=0.9}"/>
 
-                                <Switch x:Name="SwitchIsGroupRemember"
+                                <Switch IsToggled="{Binding IsGroupRemember}"
                                         RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1}"
                                         RelativeLayout.XConstraint="{ConstraintExpression Type=RelativeToView, ElementName=LblRemember, Property=Width}"/>
                             </RelativeLayout>
