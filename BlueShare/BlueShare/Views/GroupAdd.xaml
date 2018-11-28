@@ -5,7 +5,7 @@
              x:Class="BlueShare.Views.GroupAdd"
              Title="Novo grupo">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="AddGroup.png" Command="{Binding SaveGroupCommand}"/>
+        <ToolbarItem Icon="group_add.png" Command="{Binding SaveGroupCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
@@ -20,7 +20,7 @@
                     <DataTemplate>
                         <mult:SelectableCell x:Name="MultSelectUser">
                             <mult:SelectableCell.CheckView>
-                                <Image Source="selected.png" WidthRequest="30" HeightRequest="30"/>
+                                <Image Source="check_box.png" WidthRequest="30" HeightRequest="30"/>
                             </mult:SelectableCell.CheckView>
                             
                             <mult:SelectableCell.DataView>

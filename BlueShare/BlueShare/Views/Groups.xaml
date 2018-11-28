@@ -1,21 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:SuaveControls.Views;assembly=SuaveControls.FloatingActionButton"
+             xmlns:mult="clr-namespace:Xamarin.Forms.MultiSelectListView;assembly=Xamarin.Forms.MultiSelectListView"
              x:Class="BlueShare.Views.Groups">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="delete.png" Command="{Binding RemoveGroupsSelectedCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <ListView Header="Grupos" 
-                      SelectionMode="None"
                       ItemsSource="{Binding ListGroups}"
                       IsPullToRefreshEnabled="True"
                       RefreshCommand="{Binding RefreshListGroupsCommand}"
                       IsRefreshing="{Binding IsRefreshing}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Name, Mode=TwoWay}"
-                                  Detail="{Binding Users}"
-                                  TextColor="Black"/>
+                        <mult:SelectableCell x:Name="MultSelectGroups">
+                            <mult:SelectableCell.CheckView>
+                                <Image Source="check_box.png" WidthRequest="30" HeightRequest="30"/>
+                            </mult:SelectableCell.CheckView>
+
+                            <mult:SelectableCell.DataView>
+                                <StackLayout Orientation="Vertical" Padding="20,0,20,0">
+                                    <Label Text="{Binding Name, Mode=TwoWay}" TextColor="Black"/>
+                                </StackLayout>
+                            </mult:SelectableCell.DataView>
+                        </mult:SelectableCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -23,7 +33,7 @@
             <StackLayout>
                 <Button Command="{Binding AddGroupCommand}"
                         HorizontalOptions="Center"
-                        Image="AddGroup.png">
+                        Image="group_add.png">
                 </Button>
             </StackLayout>
         </StackLayout>

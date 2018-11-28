@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
+using Xamarin.Forms.MultiSelectListView;
 
 namespace BlueShare.ViewModels
 {
@@ -14,8 +15,10 @@ namespace BlueShare.ViewModels
 
         private Page PageOwner { get; set; }
 
-        private List<GroupModel> _ListGroups { get; set; }
-        public List<GroupModel> ListGroups { get { return _ListGroups; } set { _ListGroups = value; OnPropertyChanged("ListGroups"); } }
+        public MultiSelectObservableCollection<GroupModel> ListGroups { get; }
+
+        //private List<GroupModel> _ListGroups { get; set; }
+        //public List<GroupModel> ListGroups { get { return _ListGroups; } set { _ListGroups = value; OnPropertyChanged("ListGroups"); } }
 
         public Command AddGroupCommand
         {
@@ -35,10 +38,29 @@ namespace BlueShare.ViewModels
                 return new Command(() =>
                 {
                     this.IsRefreshing = true;
-                    this.ListGroups = null;
-                    this.ListGroups = this._GroupDAO.Search();
+                    this.ListGroups.Clear();
+
+                    this._GroupDAO.Search().ForEach(group => 
+                    {
+                        this.ListGroups.Add(group);
+                    });
+                                        
                     this.IsRefreshing = false;
                 });
+            }
+        }
+
+        public Command RemoveGroupsSelectedCommand
+        {
+            get
+            {
+                return new Command(() => {
+                    foreach(GroupModel group in this.ListGroups.SelectedItems)
+                    {
+                        this._GroupDAO.Delete(group);
+                    }
+                });
+
             }
         }
 
@@ -48,18 +70,8 @@ namespace BlueShare.ViewModels
         public GroupsViewModel(Page pageOwner) : base()
         {
             this.PageOwner = pageOwner;
-            this._ListGroups = new List<GroupModel>(this._GroupDAO.Search());
-            //this.AddGroupCommand = new Command(ShowAddGroup);
-            //this.RefreshListGroupsCommand = new Command(RefreshListGroupsData);
+            this.ListGroups = new MultiSelectObservableCollection<GroupModel>(this._GroupDAO.Search());
             this._IsRefreshing = false;
-        }
-
-        private void RefreshListGroupsData()
-        {
-        }
-
-        private void ShowAddGroup()
-        {
         }
     }
 }

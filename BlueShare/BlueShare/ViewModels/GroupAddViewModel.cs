@@ -38,14 +38,6 @@ namespace BlueShare.ViewModels
                     this.Users.Add(new UserModel { DeviceId = device.Address, DeviceName = device.Name });
                 }
             }
-
-            //{
-            //new UserModel { DeviceId = "1", DeviceName = "Douglas" },
-            //new UserModel { DeviceId = "2", DeviceName = "Jefferson" },
-            //new UserModel { DeviceId = "3", DeviceName = "Fernanda" },
-            //new UserModel { DeviceId = "4", DeviceName = "Mauro" },
-            //new UserModel { DeviceId = "5", DeviceName = "Peter" }
-            //};
         }
 
         private async void SaveGroupAsync()
