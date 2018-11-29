@@ -44,13 +44,14 @@ namespace BlueShare.ViewModels
         {
             if (ValidateNewGroup())
             {
-                var userList = new List<UserModel>();
+                this._GroupsDAO.Insert(new GroupModel { Name = this.GroupName });
+                var group = this._GroupsDAO.GetGroupByName(this.GroupName);
+
                 foreach (UserModel user in this.Users.SelectedItems)
                 {
-                    userList.Add(user);
+                    user.IdGroup = group.Id;
+                    this._UsersDAO.Insert(user);
                 }
-
-                this._GroupsDAO.Insert(new GroupModel { Name = this.GroupName, Users = userList });
 
                 await App.Current.MainPage.Navigation.PopAsync();
             }

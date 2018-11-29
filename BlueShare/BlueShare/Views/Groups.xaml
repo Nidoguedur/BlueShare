@@ -12,10 +12,11 @@
                       ItemsSource="{Binding ListGroups}"
                       IsPullToRefreshEnabled="True"
                       RefreshCommand="{Binding RefreshListGroupsCommand}"
-                      IsRefreshing="{Binding IsRefreshing}">
+                      IsRefreshing="{Binding IsRefreshing}"
+                      mult:MultiSelect.Enable="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <mult:SelectableCell x:Name="MultSelectGroups">
+                        <mult:SelectableCell>
                             <mult:SelectableCell.CheckView>
                                 <Image Source="check_box.png" WidthRequest="30" HeightRequest="30"/>
                             </mult:SelectableCell.CheckView>

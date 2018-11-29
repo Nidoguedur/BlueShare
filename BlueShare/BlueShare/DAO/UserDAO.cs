@@ -60,6 +60,19 @@ namespace BlueShare.DAO
             }
         }
 
+        public List<UserModel> GetUsersByGroupId(int idGroup)
+        {
+            try
+            {
+                return Connection.Table<UserModel>().Where(a => a.IdGroup == idGroup).ToList();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Info("SQLiteEx", ex.Message);
+                return null;
+            }
+        }
+
         public void Insert(UserModel user)
         {
             try

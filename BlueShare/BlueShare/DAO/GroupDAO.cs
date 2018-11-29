@@ -60,6 +60,19 @@ namespace BlueShare.DAO
             }
         }
 
+        public GroupModel GetGroupByName(string name)
+        {
+            try
+            {
+                return Connection.Table<GroupModel>().Where(a => a.Name == name).FirstOrDefault();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Info("SQLiteEx", ex.Message);
+                return null;
+            }
+        }
+
         public void Insert(GroupModel group)
         {
             try
