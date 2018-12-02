@@ -17,22 +17,13 @@ namespace BlueShare.Droid
 {
     [Activity(Label = "BlueShare", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
-    {
-        new const string TAG = "BluetoothChat.MainActivity";
-        bool logShown;
-        BluetoothChatFragment chatFrag;
-
+    { 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
-            if (savedInstanceState == null)
-            {
-                chatFrag = new BluetoothChatFragment();
-            }
-
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
 

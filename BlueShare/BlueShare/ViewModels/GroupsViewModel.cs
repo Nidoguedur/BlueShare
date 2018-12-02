@@ -15,7 +15,8 @@ namespace BlueShare.ViewModels
 
         private Page PageOwner { get; set; }
 
-        public MultiSelectObservableCollection<GroupModel> ListGroups { get; }
+        private List<GroupModel> _ListGroups;
+        public List<GroupModel> ListGroups { get { return _ListGroups; } set { _ListGroups = value; OnPropertyChanged("ListGroups"); } }
 
         public Command AddGroupCommand
         {
@@ -37,29 +38,29 @@ namespace BlueShare.ViewModels
                     this.IsRefreshing = true;
                     this.ListGroups.Clear();
 
-                    this._GroupDAO.Search().ForEach(group => 
+                    this._GroupDAO.Search().ForEach(group =>
                     {
                         this.ListGroups.Add(group);
                     });
-                                        
+
                     this.IsRefreshing = false;
                 });
             }
         }
 
-        public Command RemoveGroupsSelectedCommand
-        {
-            get
-            {
-                return new Command(() => {
-                    foreach(GroupModel group in this.ListGroups.SelectedItems)
-                    {
-                        this._GroupDAO.Delete(group);
-                    }
-                });
+        //public Command RemoveGroupsSelectedCommand
+        //{
+        //    get
+        //    {
+        //        return new Command(() => {
+        //            foreach(GroupModel group in this.ListGroups.SelectedItems)
+        //            {
+        //                this._GroupDAO.Delete(group);
+        //            }
+        //        });
 
-            }
-        }
+        //    }
+        //}
 
         private bool _IsRefreshing = false;
         public bool IsRefreshing { get { return _IsRefreshing; } set { _IsRefreshing = value; OnPropertyChanged(nameof(IsRefreshing)); } }
@@ -67,7 +68,7 @@ namespace BlueShare.ViewModels
         public GroupsViewModel(Page pageOwner) : base()
         {
             this.PageOwner = pageOwner;
-            this.ListGroups = new MultiSelectObservableCollection<GroupModel>(this._GroupDAO.Search());
+            this.ListGroups = new List<GroupModel>(this._GroupDAO.Search());
             this._IsRefreshing = false;
         }
     }

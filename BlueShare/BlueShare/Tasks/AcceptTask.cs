@@ -11,30 +11,27 @@ namespace BlueShare.Threads
 {
     public class AcceptTask
     {
-        const string TAG = "BluetoothChatService";
-        const string NAME_SECURE = "BluetoothChatSecure";
-        static UUID MY_UUID_SECURE = UUID.FromString("fa87c0d0-afac-11de-8a39-0800200c9a66");
-
         // The local server socket
-        BluetoothServerSocket serverSocket;
-        string socketType;
-        ChatService Service;
+        private BluetoothServerSocket ServerSocket;
+        private string SocketType;
+        private ChatService Service;
 
         public AcceptTask(ChatService service)
         {
             BluetoothServerSocket tmp = null;
-            socketType = "Secure";
+
+            this.SocketType = "Secure";
             this.Service = service;
 
             try
             {
-                tmp = DroidBluetooth.Adapter.ListenUsingRfcommWithServiceRecord(NAME_SECURE, MY_UUID_SECURE);
+                tmp = DroidBluetooth.Adapter.ListenUsingRfcommWithServiceRecord(Constants.NAME_SECURE, Constants.MY_UUID_SECURE);
             }
             catch (Java.IO.IOException e)
             {
-                Log.Error(TAG, "listen() failed", e);
+                Log.Error(Constants.TAG, "listen() failed", e);
             }
-            serverSocket = tmp;
+            ServerSocket = tmp;
             service.State = Constants.STATE_LISTEN;
         }
 
@@ -46,11 +43,11 @@ namespace BlueShare.Threads
             {
                 try
                 {
-                    socket = serverSocket.Accept();
+                    socket = ServerSocket.Accept();
                 }
                 catch (Java.IO.IOException e)
                 {
-                    Log.Error(TAG, "accept() failed", e);
+                    Log.Error(Constants.TAG, "accept() failed", e);
                     break;
                 }
 
@@ -62,7 +59,7 @@ namespace BlueShare.Threads
                         {
                             case Constants.STATE_LISTEN:
                             case Constants.STATE_CONNECTING:
-                                this.Service.Connected(socket, socket.RemoteDevice, socketType);
+                                this.Service.Connected(socket, socket.RemoteDevice, SocketType);
                                 break;
                             case Constants.STATE_NONE:
                             case Constants.STATE_CONNECTED:
@@ -72,7 +69,7 @@ namespace BlueShare.Threads
                                 }
                                 catch (Java.IO.IOException e)
                                 {
-                                    Log.Error(TAG, "Could not close unwanted socket", e);
+                                    Log.Error(Constants.TAG, "Could not close unwanted socket", e);
                                 }
                                 break;
                         }
@@ -85,11 +82,11 @@ namespace BlueShare.Threads
         {
             try
             {
-                serverSocket.Close();
+                ServerSocket.Close();
             }
             catch (Java.IO.IOException e)
             {
-                Log.Error(TAG, "close() of server failed", e);
+                Log.Error(Constants.TAG, "close() of server failed", e);
             }
         }
     }

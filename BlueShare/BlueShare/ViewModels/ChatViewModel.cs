@@ -14,9 +14,7 @@ namespace BlueShare.ViewModels
 
         private Page PageOwner { get; set; }
 
-        private UserDAO UsersDAO;
-        private List<UserModel> Users { get; set; }
-
+        private UserDAO UsersDAO = new UserDAO();
         private ChatService ChatService;
         private ChatHandler _Handler;
 
@@ -25,7 +23,7 @@ namespace BlueShare.ViewModels
             get
             {
                 return new Command(() => {
-                    if (this.ChatService.GetState() != ChatService.STATE_CONNECTED)
+                    if (this.ChatService.GetState() != Constants.STATE_CONNECTED)
                     {
                         this.PageOwner.DisplayAlert("Serviço não conectado", "O serviço de chat não está disponível no momento", "Ok");
                         return;
@@ -44,13 +42,12 @@ namespace BlueShare.ViewModels
         public ChatViewModel(Page pageOwner, GroupModel groups)
         {
             this.PageOwner = pageOwner;
-            this.Users = this.UsersDAO.GetUsersByGroupId(groups.Id);
             this.Message = string.Empty;
             this._Handler = new ChatHandler(this);
             this.ChatService = new ChatService(this._Handler);
             this.ChatService.Start();
 
-            foreach(UserModel user in this.Users)
+            foreach(UserModel user in this.UsersDAO.GetUsersByGroupId(groups.Id))
             {
                 var device = DroidBluetooth.Adapter.GetRemoteDevice(user.DeviceId);
 

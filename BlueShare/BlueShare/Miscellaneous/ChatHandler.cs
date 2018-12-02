@@ -20,7 +20,7 @@ namespace BlueShare.Miscellaneous
                 case Constants.MESSAGE_STATE_CHANGE:
                     switch (msg.What)
                     {
-                        case ChatService.STATE_CONNECTED:
+                        case Constants.STATE_CONNECTED:
                             chat.Message = string.Empty;
                             break;
                     }
@@ -35,13 +35,6 @@ namespace BlueShare.Miscellaneous
                     var readMessage = Encoding.ASCII.GetString(readBuffer);
                     chat.Message += readMessage;
                     break;
-                //case Constants.MESSAGE_DEVICE_NAME:
-                //    chat.connectedDeviceName = msg.Data.GetString(Constants.DEVICE_NAME);
-                //    if (chat.Activity != null)
-                //    {
-                //        Toast.MakeText(chat.Activity, $"Connected to {chat.connectedDeviceName}.", ToastLength.Short).Show();
-                //    }
-                //    break;
             }
         }
     }

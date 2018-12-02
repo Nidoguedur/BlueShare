@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using BlueShare.DAO;
 using BlueShare.ViewModels;
+using BlueShare.Models;
 
 namespace BlueShare.Views
 {
@@ -18,6 +19,11 @@ namespace BlueShare.Views
             InitializeComponent();
 
             this.BindingContext = new GroupsViewModel(this);
+        }
+
+        private void OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            this.Navigation.PushModalAsync(new Chat((GroupModel)e.Item));
         }
     }
 }

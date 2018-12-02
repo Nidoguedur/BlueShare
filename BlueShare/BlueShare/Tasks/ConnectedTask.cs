@@ -14,58 +14,55 @@ namespace BlueShare.Threads
         /// This thread runs during a connection with a remote device.
         /// It handles all incoming and outgoing transmissions.
         /// </summary>
-        BluetoothSocket socket;
-        Stream inStream;
-        Stream outStream;
-        ChatService service;
+        private BluetoothSocket Socket;
+        private Stream InStream, OutStream;
+        private ChatService Service;
 
         public ConnectedTask(BluetoothSocket socket, ChatService service, string socketType)
         {
-            Log.Debug(TAG, $"create ConnectedThread: {socketType}");
-            this.socket = socket;
-            this.service = service;
+            Log.Debug(Constants.TAG, $"create ConnectedThread: {socketType}");
+            this.Socket = socket;
+            this.Service = service;
             Stream tmpIn = null;
             Stream tmpOut = null;
 
             // Get the BluetoothSocket input and output streams
             try
             {
-                tmpIn = socket.InputStream;
-                tmpOut = socket.OutputStream;
+                tmpIn = this.Socket.InputStream;
+                tmpOut = this.Socket.OutputStream;
             }
             catch (Java.IO.IOException e)
             {
-                Log.Error(TAG, "temp sockets not created", e);
+                Log.Error(Constants.TAG, "temp sockets not created", e);
             }
 
-            inStream = tmpIn;
-            outStream = tmpOut;
-            service.state = STATE_CONNECTED;
+            this.InStream = tmpIn;
+            this.OutStream = tmpOut;
+            service.State = Constants.STATE_CONNECTED;
         }
 
         public void Run()
         {
-            Log.Info(TAG, "BEGIN mConnectedThread");
+            Log.Info(Constants.TAG, "BEGIN mConnectedThread");
             byte[] buffer = new byte[1024];
             int bytes;
 
             // Keep listening to the InputStream while connected
-            while (service.GetState() == STATE_CONNECTED)
+            while (this.Service.GetState() == Constants.STATE_CONNECTED)
             {
                 try
                 {
                     // Read from the InputStream
-                    bytes = inStream.Read(buffer, 0, buffer.Length);
+                    bytes = this.InStream.Read(buffer, 0, buffer.Length);
 
                     // Send the obtained bytes to the UI Activity
-                    service.handler
-                           .ObtainMessage(Constants.MESSAGE_READ, bytes, -1, buffer)
-                           .SendToTarget();
+                    this.Service.Handler.ObtainMessage(Constants.MESSAGE_READ, bytes, -1, buffer).SendToTarget();
                 }
                 catch (Java.IO.IOException e)
                 {
-                    Log.Error(TAG, "disconnected", e);
-                    service.ConnectionLost();
+                    Log.Error(Constants.TAG, "disconnected", e);
+                    this.Service.ConnectionLost();
                     break;
                 }
             }
@@ -81,16 +78,14 @@ namespace BlueShare.Threads
         {
             try
             {
-                outStream.Write(buffer, 0, buffer.Length);
+                this.OutStream.Write(buffer, 0, buffer.Length);
 
                 // Share the sent message back to the UI Activity
-                service.handler
-                       .ObtainMessage(Constants.MESSAGE_WRITE, -1, -1, buffer)
-                       .SendToTarget();
+                this.Service.Handler.ObtainMessage(Constants.MESSAGE_WRITE, -1, -1, buffer).SendToTarget();
             }
             catch (Java.IO.IOException e)
             {
-                Log.Error(TAG, "Exception during write", e);
+                Log.Error(Constants.TAG, "Exception during write", e);
             }
         }
 
@@ -98,11 +93,11 @@ namespace BlueShare.Threads
         {
             try
             {
-                socket.Close();
+                this.Socket.Close();
             }
             catch (Java.IO.IOException e)
             {
-                Log.Error(TAG, "close() of connect socket failed", e);
+                Log.Error(Constants.TAG, "close() of connect socket failed", e);
             }
         }
 
