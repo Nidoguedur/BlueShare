@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Android.Database.Sqlite;
-using Android.Util;
 using BlueShare.Models;
+using SQLite;
+using Xamarin.Forms.Internals;
 
 namespace BlueShare.DAO
 {
@@ -17,7 +17,7 @@ namespace BlueShare.DAO
             }
             catch (SQLiteException ex)
             {
-                Log.Info("SQLiteEx", ex.Message);
+                Log.Warning("SQLiteEx", ex.Message);
             }
         }
 
@@ -29,7 +29,7 @@ namespace BlueShare.DAO
             }
             catch (SQLiteException ex)
             {
-                Log.Info("SQLiteEx", ex.Message);
+                Log.Warning("SQLiteEx", ex.Message);
                 return null;
             }
         }
@@ -42,7 +42,7 @@ namespace BlueShare.DAO
             }
             catch (SQLiteException ex)
             {
-                Log.Info("SQLiteEx", ex.Message);
+                Log.Warning("SQLiteEx", ex.Message);
                 return null;
             }
         }
@@ -55,7 +55,7 @@ namespace BlueShare.DAO
             }
             catch (SQLiteException ex)
             {
-                Log.Info("SQLiteEx", ex.Message);
+                Log.Warning("SQLiteEx", ex.Message);
                 return null;
             }
         }
@@ -68,7 +68,7 @@ namespace BlueShare.DAO
             }
             catch (SQLiteException ex)
             {
-                Log.Info("SQLiteEx", ex.Message);
+                Log.Warning("SQLiteEx", ex.Message);
                 return null;
             }
         }
@@ -81,7 +81,7 @@ namespace BlueShare.DAO
             }
             catch (SQLiteException ex)
             {
-                Log.Info("SQLiteEx", ex.Message);
+                Log.Warning("SQLiteEx", ex.Message);
             }
         }
 
@@ -93,7 +93,7 @@ namespace BlueShare.DAO
             }
             catch (SQLiteException ex)
             {
-                Log.Info("SQLiteEx", ex.Message);
+                Log.Warning("SQLiteEx", ex.Message);
             }
         }
 
@@ -105,7 +105,7 @@ namespace BlueShare.DAO
             }
             catch (SQLiteException ex)
             {
-                Log.Info("SQLiteEx", ex.Message);
+                Log.Warning("SQLiteEx", ex.Message);
             }
         }
     }

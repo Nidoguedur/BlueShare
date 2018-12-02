@@ -17,9 +17,6 @@ namespace BlueShare.ViewModels
 
         public MultiSelectObservableCollection<GroupModel> ListGroups { get; }
 
-        //private List<GroupModel> _ListGroups { get; set; }
-        //public List<GroupModel> ListGroups { get { return _ListGroups; } set { _ListGroups = value; OnPropertyChanged("ListGroups"); } }
-
         public Command AddGroupCommand
         {
             get

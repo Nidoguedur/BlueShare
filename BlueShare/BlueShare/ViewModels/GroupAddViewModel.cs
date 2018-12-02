@@ -1,9 +1,7 @@
 ﻿using BlueShare.DAO;
 using BlueShare.Models;
-using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.MultiSelectListView;
-using Android;
 using BlueShare.Miscellaneous;
 using Android.Bluetooth;
 

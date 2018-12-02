@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Android.Bluetooth;
+﻿using Android.Bluetooth;
 
 namespace BlueShare.Miscellaneous
 {

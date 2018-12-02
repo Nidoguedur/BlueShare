@@ -33,6 +33,8 @@
 
             <StackLayout>
                 <Button Command="{Binding AddGroupCommand}"
+                        BackgroundColor="SkyBlue"
+                        BorderRadius="20"
                         HorizontalOptions="Center"
                         Image="group_add.png">
                 </Button>
