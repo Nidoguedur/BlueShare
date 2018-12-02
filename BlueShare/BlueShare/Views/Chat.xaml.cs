@@ -14,11 +14,11 @@ namespace BlueShare.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Chat : ContentPage
 	{
-		public Chat(GroupModel groups)
+		public Chat()
 		{
 			InitializeComponent ();
 
-            this.BindingContext = new ChatViewModel(this, groups);
+            this.BindingContext = new ChatViewModel(this);
 		}
     }
 }

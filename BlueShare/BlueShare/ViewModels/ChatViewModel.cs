@@ -1,4 +1,5 @@
-﻿using BlueShare.DAO;
+﻿using Android.Bluetooth;
+using BlueShare.DAO;
 using BlueShare.Miscellaneous;
 using BlueShare.Models;
 using System.Collections.Generic;
@@ -14,7 +15,6 @@ namespace BlueShare.ViewModels
 
         private Page PageOwner { get; set; }
 
-        private UserDAO UsersDAO = new UserDAO();
         private ChatService ChatService;
         private ChatHandler _Handler;
 
@@ -39,7 +39,7 @@ namespace BlueShare.ViewModels
             }           
         }
 
-        public ChatViewModel(Page pageOwner, GroupModel groups)
+        public ChatViewModel(Page pageOwner)
         {
             this.PageOwner = pageOwner;
             this.Message = string.Empty;
@@ -47,14 +47,9 @@ namespace BlueShare.ViewModels
             this.ChatService = new ChatService(this._Handler);
             this.ChatService.Start();
 
-            foreach(UserModel user in this.UsersDAO.GetUsersByGroupId(groups.Id))
+            foreach(BluetoothDevice device in DroidBluetooth.Adapter.BondedDevices)
             {
-                var device = DroidBluetooth.Adapter.GetRemoteDevice(user.DeviceId);
-
-                if (device != null)
-                {
-                    this.ChatService.Connect(device, true);
-                }
+                this.ChatService.Connect(device, true);
             }
         }
     }

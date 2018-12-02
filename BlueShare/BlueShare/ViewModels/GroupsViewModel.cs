@@ -11,12 +11,22 @@ namespace BlueShare.ViewModels
 {
     public class GroupsViewModel : BaseViewModel
     {
-        private readonly GroupDAO _GroupDAO = new GroupDAO();
-
+        private readonly GroupDAO _GroupDAO = new GroupDAO();    
         private Page PageOwner { get; set; }
 
         private List<GroupModel> _ListGroups;
-        public List<GroupModel> ListGroups { get { return _ListGroups; } set { _ListGroups = value; OnPropertyChanged("ListGroups"); } }
+        public List<GroupModel> ListGroups
+        {
+            get
+            {
+                return _ListGroups;
+            }
+            set
+            {
+                _ListGroups = value;
+                OnPropertyChanged("ListGroups");
+            }
+        }
 
         public Command AddGroupCommand
         {
@@ -52,8 +62,9 @@ namespace BlueShare.ViewModels
         //{
         //    get
         //    {
-        //        return new Command(() => {
-        //            foreach(GroupModel group in this.ListGroups.SelectedItems)
+        //        return new Command(() =>
+        //        {
+        //            foreach (GroupModel group in this.ListGroups.SelectedItems)
         //            {
         //                this._GroupDAO.Delete(group);
         //            }

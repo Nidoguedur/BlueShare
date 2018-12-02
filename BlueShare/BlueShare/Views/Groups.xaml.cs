@@ -20,10 +20,5 @@ namespace BlueShare.Views
 
             this.BindingContext = new GroupsViewModel(this);
         }
-
-        private void OnItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            this.Navigation.PushModalAsync(new Chat((GroupModel)e.Item));
-        }
     }
 }

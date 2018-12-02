@@ -1,11 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BlueShare.Views.Chat"
-             Title="Chat">
+             x:Class="BlueShare.Views.Chat">
     <ContentPage.Content>
         <StackLayout>
-            <Editor Text="{Binding Message}"/>
+            <Editor Text="{Binding Message}" HeightRequest="400"/>
 
             <Button Text="Enviar" Command="{Binding SendMessageCommand}"/>
         </StackLayout>

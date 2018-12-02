@@ -5,6 +5,6 @@
              x:Class="BlueShare.MainPage"
              Title="BlueShare">
   <TabbedPage.Children>
-    <tab:Groups Title = "Grupos" />
+    <tab:Chat Title = "Chat" />
   </TabbedPage.Children>
 </TabbedPage>

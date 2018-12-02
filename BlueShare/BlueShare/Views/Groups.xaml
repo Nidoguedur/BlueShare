@@ -8,17 +8,14 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <ListView Header="Grupos" 
-                      ItemTapped="OnItemTapped"
+            <ListView Header="Grupos"
                       ItemsSource="{Binding ListGroups}"
                       IsPullToRefreshEnabled="True"
                       RefreshCommand="{Binding RefreshListGroupsCommand}"
                       IsRefreshing="{Binding IsRefreshing}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Orientation="Vertical" Padding="20,0,20,0">
-                            <Label Text="{Binding Name, Mode=TwoWay}" TextColor="Black"/>
-                        </StackLayout>
+                        <TextCell Text="{Binding Name, Mode=TwoWay}" TextColor="Black"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -26,7 +23,7 @@
             <StackLayout>
                 <Button Command="{Binding AddGroupCommand}"
                         BackgroundColor="SkyBlue"
-                        BorderRadius="20"
+                        BorderRadius="40"
                         HorizontalOptions="Center"
                         Image="group_add.png">
                 </Button>
